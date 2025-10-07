@@ -1,0 +1,130 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Post {
+  id           String      @id @default(uuid())
+  titulo       String
+  slug         String      @unique
+  conteudo     String      @db.Text
+  resumo       String?
+  publicado_em DateTime?   @updatedAt
+  atualizado_em DateTime   @updatedAt
+  status       PostStatus  @default(RASCUNHO)
+
+  imagem_capa_id String
+  imagem_capa    Arquivo @relation("ImagemCapa", fields: [imagem_capa_id], references: [id])
+  
+  autor_id     String
+  categoria_id String
+
+  autor        Usuario     @relation(fields: [autor_id], references: [id])
+  categoria    Categoria   @relation(fields: [categoria_id], references: [id])
+  tags         PostTag[]   // relação N:N com tags
+  comentarios  Comentario[]
+}
+
+model Categoria {
+  id        String   @id @default(uuid())
+  nome      String
+  slug      String   @unique
+  descricao String?
+
+  posts     Post[]
+}
+
+model Tag {
+  id    String    @id @default(uuid())
+  nome  String
+  slug  String    @unique
+
+  posts PostTag[] // relação N:N com posts
+}
+
+model PostTag {
+  post_id String
+  tag_id  String
+
+  post    Post   @relation(fields: [post_id], references: [id])
+  tag     Tag    @relation(fields: [tag_id], references: [id])
+
+  @@id([post_id, tag_id])
+}
+
+model Comen+tario {
+  id        String   @id @default(uuid())
+  post_id   String
+  nome      String
+  email     String
+  mensagem  String
+  criado_em DateTime @default(now())
+  aprovado  Boolean  @default(false)
+
+  post      Post     @relation(fields: [post_id], references: [id])
+}
+
+model Usuario {
+  id         String       @id @default(uuid())
+  nome       String
+  email      String       @unique
+  senha_hash String
+  tipo       UsuarioTipo  @default(LEITOR)
+
+  bio        String?
+  foto_id    String?
+  foto       Arquivo?     @relation("FotoUsuario", fields: [foto_id], references: [id])
+  criado_em  DateTime     @default(now())
+
+  posts      Post[]
+}
+
+
+model Arquivo {
+  id         String   @id @default(uuid())
+  nome       String
+  tipo       String                // MIME type (ex: image/jpeg)
+  caminho    String                // Caminho ou URL do arquivo
+  tamanho    Int                   // Em bytes
+  criado_em  DateTime @default(now())
+  tipo_logico TipoLogicoArquivo   @default(OUTRO)
+
+  // Relacionamentos reversos (opcional, como discutido antes)
+  postImagemCapa   Post[]     @relation("ImagemCapa")
+  usuarioFoto        Usuario[]    @relation("FotoUsuario")
+}
+
+
+enum PostStatus {
+  RASCUNHO
+  PUBLICADO
+  ARQUIVADO
+}
+
+enum UsuarioTipo {
+  ADMIN
+  AUTOR
+  EDITOR
+  LEITOR
+}
+
+
+enum TipoLogicoArquivo {
+  IMAGEM
+  DOCUMENTO
+  VIDEO
+  AUDIO
+  ARQUIVO
+  OUTRO
+}
