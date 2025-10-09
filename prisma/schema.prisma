@@ -63,7 +63,7 @@ model PostTag {
   @@id([post_id, tag_id])
 }
 
-model Comen+tario {
+model Comentario {
   id        String   @id @default(uuid())
   post_id   String
   nome      String
