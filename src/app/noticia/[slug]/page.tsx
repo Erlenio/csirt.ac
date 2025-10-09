@@ -118,7 +118,7 @@ const PostDetailPage: React.FC = () => {
         if (slug) {
             getPost();
         }
-    });
+    }, [slug]);
 
 
     // ----------------------------------------------------

@@ -59,7 +59,7 @@ const AdminPost: React.FC = () => {
         );
         setNoticias(filtered);
 
-    }); // Dispara o efeito sempre que a string de pesquisa mudar
+    }, [searchString]); // Dispara o efeito sempre que a string de pesquisa mudar
 
     function onChange(e: React.ChangeEvent<HTMLInputElement>) {
         setSearchString(e.target.value);
