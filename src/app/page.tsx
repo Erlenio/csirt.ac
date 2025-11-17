@@ -74,7 +74,7 @@ export default function Home() {
       {/* Seção de Notícias Recentes */}
       <NewsSection recentNews={posts} />
       <Partners />
-      <SolutionsSection />
+      {/*<SolutionsSection />*/}
       <CAT />
       <Footer />
     </div>

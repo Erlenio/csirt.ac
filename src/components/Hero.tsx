@@ -121,9 +121,9 @@ export const HeroItemStatic: React.FC = () => {
                     Protegendo o Futuro Digital da Academia
                 </h2>
                 <p className="text-lg text-gray-400 mb-8">
-                    A **MoRENet-CSIRT** é a Equipe de Resposta a Incidentes de Segurança Cibernética para a comunidade académica e científica, dedicada a garantir um ambiente online seguro e confiável.
+                    A <strong>MoRENet-CSIRT</strong> é a Equipe de Resposta a Incidentes de Segurança Cibernética para a comunidade académica e científica, dedicada a garantir um ambiente online seguro e confiável.
                 </p>
-                <Link href="#contact" className="inline-flex items-center px-8 py-3 rounded-full font-bold text-gray-950 bg-green-500 hover:bg-green-400 transition-colors duration-300">
+                <Link href="reportar-incident" className="inline-flex items-center px-8 py-3 rounded-full font-bold text-gray-950 bg-green-500 hover:bg-green-400 transition-colors duration-300">
                     Reportar um Incidente <ArrowRight size={20} className="ml-2" />
                 </Link>
             </div>

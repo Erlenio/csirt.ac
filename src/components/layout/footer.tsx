@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Loader, Facebook, Twitter, Instagram, Linkedin, Youtube, Mail, MapPin, Phone } from "lucide-react";
+import Image from "next/image";
 
 // Definição da tipagem para os links
 interface LinkItem {
@@ -26,15 +27,15 @@ const LINKS_UTEIS: LinkItem[] = [
 ];
 
 /*const CONTACTOS: LinkItem[] = [
-  { name: "csirtac@morenet.ac", link: "mailto:csirtac@morenet.ac" },
+  { name: "cert@morenet.ac", link: "mailto:cert@morenet.ac" },
   { name: "+258 21 486 422", link: "tel:+25821486422" },
   { name: "Av. de Moçambique, Maputo", link: "#" },
 ];*/
 
 const Icons = [
-  { name: "Facebook", icon: Facebook, link: "https://facebook.com" },
-  { name: "Twitter", icon: Twitter, link: "https://twitter.com" },
-  { name: "Instagram", icon: Instagram, link: "https://instagram.com" },
+  //{ name: "Facebook", icon: Facebook, link: "https://facebook.com" },
+  //{ name: "Twitter", icon: Twitter, link: "https://twitter.com" },
+  //{ name: "Instagram", icon: Instagram, link: "https://instagram.com" },
   { name: "Linkedin", icon: Linkedin, link: "https://linkedin.com" },
   { name: "Youtube", icon: Youtube, link: "https://youtube.com" },
 ];
@@ -137,7 +138,7 @@ export const Footer = () => {
     <footer className="bg-gray-900 text-white">
       {/* Seção de Newsletter */}
       <div className="flex flex-col items-center justify-between px-4 py-12 md:flex-row md:px-12 md:py-8 lg:px-24">
-        <h1 className="mb-6 max-w-lg text-center font-bold leading-tight md:mb-0 md:text-left md:text-3xl lg:text-4xl">
+        <h1 className="mb-6 max-w-lg text-center font-bold leading-tight md:mb-0 md:text-left md:text-xl lg:text-3xl">
           Subscreva-se à nossa <span className="text-green-500">newsletter</span>
         </h1>
         <form onSubmit={subscribe} className="flex w-full flex-col items-center sm:flex-row sm:w-auto">
@@ -176,9 +177,12 @@ export const Footer = () => {
       {/* Seção de Links e Ícones */}
       <div className="border-t border-gray-700 px-4 py-16 md:px-12 md:py-16 lg:px-24">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="text-center md:text-left">
-            <h2 className="mb-4 text-3xl font-bold text-green-500">CSIRT.AC</h2>
-            <p className="text-gray-400">Protegendo a comunidade acadêmica e científica.</p>
+          <div className="text-left">
+            <h2 className="mb-2 text-3xl font-bold text-green-500">CSIRT.AC</h2>
+            <p className="text-gray-400 mb-2">Protegendo a comunidade acadêmica e científica.</p>
+            <div className="w-[70%] h-20 relative">
+              <Image src="/imagens/MoRENet_Logo.png" alt="MoRENet" fill/>
+            </div>
           </div>
           <Item Links={QUICK_LINK} title="Links Rápidos" />
           <Item Links={LINKS_UTEIS} title="Links Úteis" />
@@ -187,15 +191,15 @@ export const Footer = () => {
             <ul className="text-gray-400">
               <li className="mb-2 flex items-center justify-center md:justify-start gap-2">
                 <Mail size={18} className="text-green-500" />
-                <Link href="mailto:csirtac@morenet.ac" className="hover:text-green-500">csirtac@morenet.ac</Link>
+                <Link href="mailto:cert@morenet.ac" className="hover:text-green-500">cert@morenet.ac</Link>
               </li>
               <li className="mb-2 flex items-center justify-center md:justify-start gap-2">
                 <Phone size={18} className="text-green-500" />
-                <Link href="tel:+25821486422" className="hover:text-green-500">+258 21 486 422</Link>
+                <Link href="tel:+25821486422" className="hover:text-green-500">+258 84 548 5927</Link>
               </li>
               <li className="flex items-center justify-center md:justify-start gap-2">
                 <MapPin size={18} className="text-green-500" />
-                <span className="hover:text-green-500">Av. de Moçambique, Maputo</span>
+                <span className="hover:text-green-500">Parque de Ciências, Maluana KM 60</span>
               </li>
             </ul>
           </div>

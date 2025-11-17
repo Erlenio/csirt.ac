@@ -16,6 +16,7 @@ interface FormData {
     email: string;
     tipo: string;
     senha?: string; 
+    id?: string;
     confirmarSenha?: string;
 }
 
@@ -80,10 +81,10 @@ const UserFormContent: React.FC<{ initialUser: Usuario | null, onSuccess: (u: Us
         setIsLoading(true);
         setError(null);
 
-        const apiEndpoint = isEditing ? `/api/usuarios/${initialUser!.id}` : '/api/auth/register';
+        const apiEndpoint = isEditing ? `/api/usuarios` : '/api/auth/register';
         const method = isEditing ? 'PUT' : 'POST';
 
-        const dataToSend: Partial<FormData> = { nome: formData.nome, email: formData.email, tipo: formData.tipo };
+        const dataToSend: Partial<FormData> = { nome: formData.nome, email: formData.email, tipo: formData.tipo, id: initialUser?.id };
         if (formData.senha && formData.senha.length > 0) {
             dataToSend.senha = formData.senha;
         }
@@ -196,7 +197,7 @@ export const UserFormModal: React.FC<UserFormModalProps> = ({ isOpen, initialUse
 
     return (
         // Overlay escuro
-        <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4" onClick={onClose}>
+        <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
             {/* Modal Container */}
             <div 
                 className="bg-gray-800 rounded-xl shadow-2xl border border-gray-700 max-w-lg w-full max-h-[90vh] overflow-y-auto"
