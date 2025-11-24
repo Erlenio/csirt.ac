@@ -18,7 +18,7 @@ const AboutUsPage: React.FC = () => {
                             Quem Somos
                         </h1>
                         <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-                            A <strong>MoRENet-CSIRT</strong>, estabelecida a 03 de Novembro de 2018, é a equipa de resposta a incidentes de segurança cibernética da MoRENet, rsponsável por apoiar a comunidade académica e incidentes de segurança. O seu principal objectivo é atuar como ponto único de contacto para todos os incidentes que envolvam os membros da MoRENet e, assegurando a coordenação do tratamento e da resposta, bem como a partilha de informação crítica entre as partes interresadas. A MoRENet-CSIRT presta assistência técnica especializada e serviços de assessoria às instituições beneficiárias, contribuindo para o reforço das capacidades de segurança da informação e para a melhoria contintínua da resiliência cibernética no ecossistema académico e científico nacional.
+                            O **CSIRT.AC** é a sua primeira linha de defesa contra ameaças cibernéticas na comunidade académica de Moçambique.
                         </p>
                     </div>
 
@@ -29,7 +29,7 @@ const AboutUsPage: React.FC = () => {
                             <Target size={36} className="text-green-500 mb-4" />
                             <h2 className="text-3xl font-bold text-white mb-4">Nossa Missão</h2>
                             <p className="text-gray-300 leading-relaxed">
-                                Coordenar a resposta a incidentes de segurança cibernética no seio da comunidade académica e científica nacional, prestar assistência na resolução desses incidentes, disseminar alertas sobre ameaças iminentes, promover a criação de CSIRTs nas instituições beneficiárias e melhorar o conhecimento geral sobre cibersegurança entre os seus membros.
+                                Proteger a infraestrutura crítica da rede académica e de pesquisa nacional, provendo serviços proativos e reativos de resposta a incidentes de segurança cibernética e promovendo a conscientização contínua na comunidade.
                             </p>
                         </div>
 
@@ -38,7 +38,7 @@ const AboutUsPage: React.FC = () => {
                             <Eye size={36} className="text-green-500 mb-4" />
                             <h2 className="text-3xl font-bold text-white mb-4">Nossa Visão</h2>
                             <p className="text-gray-300 leading-relaxed">
-                                Ser a referência nacional em segurança cibernética no ensino e na investigação, promovendo um ambiente digital resiliente, colaborativo e confiável, e assegurando a proteção das infraestruturas críticas de informação que sustentam a comunidade académica e científica moçambicana.
+                                Ser reconhecido como o centro de excelência em segurança cibernética do ecossistema académico moçambicano, garantindo um ambiente digital seguro e confiável para a inovação, pesquisa e ensino.
                             </p>
                         </div>
                     </div>

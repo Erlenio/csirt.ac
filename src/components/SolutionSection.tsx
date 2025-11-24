@@ -49,7 +49,7 @@ export const SolutionsSection: React.FC = () => {
                         Nossas <span className="text-green-500">Soluções</span> de Segurança
                     </h2>
                     <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-                        Oferecemos um portfólio completo de serviços cibernéticos, focado nas necessidades exclusivas do sector académico.
+                        Oferecemos um portfólio completo de serviços cibernéticos, focado nas necessidades exclusivas do setor académico.
                     </p>
                 </div>
 

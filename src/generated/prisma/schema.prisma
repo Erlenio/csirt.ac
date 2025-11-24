@@ -99,45 +99,9 @@ model Arquivo {
   criado_em   DateTime          @default(now())
   tipo_logico TipoLogicoArquivo @default(OUTRO)
 
-  incidenteId String?
-  incidente   Incidente? @relation(fields: [incidenteId], references: [id])
-
   // Relacionamentos reversos (opcional, como discutido antes)
   postImagemCapa Post[]    @relation("ImagemCapa")
   usuarioFoto    Usuario[] @relation("FotoUsuario")
-}
-
-model Incidente {
-  id String @id @default(uuid())
-
-  // Campos do Formulário
-  titulo      String
-  descricao   String           @db.Text
-  localizacao String // Ex: "/admin/posts" ou "Módulo de Login"
-  prioridade  IncidentPriority @default(MEDIA)
-
-  // Rastreamento e Gestão
-  status        IncidentStatus @default(ABERTO)
-  criado_em     DateTime       @default(now())
-  atualizado_em DateTime       @updatedAt
-
-  // Anexos (Armazenar URLs ou caminhos para as imagens)
-  // Se forem URLs externas (Ex: AWS S3), use String[]
-  anexos Arquivo[]
-}
-
-enum IncidentPriority {
-  BAIXA
-  MEDIA
-  ALTA
-  CRITICA
-}
-
-enum IncidentStatus {
-  ABERTO
-  EM_ANDAMENTO
-  RESOLVIDO
-  ARQUIVADO
 }
 
 enum PostStatus {
