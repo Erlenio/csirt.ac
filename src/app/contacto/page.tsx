@@ -92,7 +92,7 @@ const ContactPage: React.FC = () => {
                                     </p>
                                     <p className="flex items-start text-white">
                                         <MapPin size={18} className="mt-1 mr-3 text-green-400 flex-shrink-0" />
-                                        Av. das Acácias, Maputo, Moçambique
+                                        Av. Vladmin Lenine, Nº 598
                                     </p>
                                 </div>
                             </div>

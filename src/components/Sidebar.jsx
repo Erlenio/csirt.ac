@@ -23,7 +23,7 @@ export default function Sidebar({ children, name, email, onLogout, expanded, onE
       <nav className="h-full flex flex-col bg-background border-r shadow-sm">
         <div className="p-4 pb-2 flex justify-between items-center">
           <Image
-            src="/images/morenet.png"
+            src="/imagens/MoRENet_Logo.png"
             className={`overflow-hidden transition-all ${expanded ? "w-32" : "w-0"
               }`}
             alt="MoRENet"
@@ -42,7 +42,7 @@ export default function Sidebar({ children, name, email, onLogout, expanded, onE
           <ul className="flex-1 px-3">{children}</ul>
         </SidebarContext.Provider>
 
-        <div className="border-t flex p-3" onClick={() => router.push('/dashboard/profile')}>
+        <div className="border-t flex p-3">
           {/**<Image
             src="https://ui-avatars.com/api/?background=c7d2fe&color=3730a3&bold=true"
             alt=""

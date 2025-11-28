@@ -180,7 +180,19 @@ exports.Prisma.ArquivoScalarFieldEnum = {
   caminho: 'caminho',
   tamanho: 'tamanho',
   criado_em: 'criado_em',
-  tipo_logico: 'tipo_logico'
+  tipo_logico: 'tipo_logico',
+  incidenteId: 'incidenteId'
+};
+
+exports.Prisma.IncidenteScalarFieldEnum = {
+  id: 'id',
+  titulo: 'titulo',
+  descricao: 'descricao',
+  localizacao: 'localizacao',
+  prioridade: 'prioridade',
+  status: 'status',
+  criado_em: 'criado_em',
+  atualizado_em: 'atualizado_em'
 };
 
 exports.Prisma.SortOrder = {
@@ -243,7 +255,15 @@ exports.Prisma.ArquivoOrderByRelevanceFieldEnum = {
   id: 'id',
   nome: 'nome',
   tipo: 'tipo',
-  caminho: 'caminho'
+  caminho: 'caminho',
+  incidenteId: 'incidenteId'
+};
+
+exports.Prisma.IncidenteOrderByRelevanceFieldEnum = {
+  id: 'id',
+  titulo: 'titulo',
+  descricao: 'descricao',
+  localizacao: 'localizacao'
 };
 exports.PostStatus = exports.$Enums.PostStatus = {
   RASCUNHO: 'RASCUNHO',
@@ -267,6 +287,20 @@ exports.TipoLogicoArquivo = exports.$Enums.TipoLogicoArquivo = {
   OUTRO: 'OUTRO'
 };
 
+exports.IncidentPriority = exports.$Enums.IncidentPriority = {
+  BAIXA: 'BAIXA',
+  MEDIA: 'MEDIA',
+  ALTA: 'ALTA',
+  CRITICA: 'CRITICA'
+};
+
+exports.IncidentStatus = exports.$Enums.IncidentStatus = {
+  ABERTO: 'ABERTO',
+  EM_ANDAMENTO: 'EM_ANDAMENTO',
+  RESOLVIDO: 'RESOLVIDO',
+  ARQUIVADO: 'ARQUIVADO'
+};
+
 exports.Prisma.ModelName = {
   Post: 'Post',
   Categoria: 'Categoria',
@@ -274,7 +308,8 @@ exports.Prisma.ModelName = {
   PostTag: 'PostTag',
   Comentario: 'Comentario',
   Usuario: 'Usuario',
-  Arquivo: 'Arquivo'
+  Arquivo: 'Arquivo',
+  Incidente: 'Incidente'
 };
 
 /**

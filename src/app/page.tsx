@@ -9,7 +9,6 @@ import { MissionVisionValues } from "../components/MissionVisionValues";
 import { Hero } from "../components/Hero";
 import { CAT } from "../components/CAT";
 import { NewsSection } from "../components/noticia/NewsSection";
-import { SolutionsSection } from "../components/SolutionSection";
 import { PostWithDeteils } from "@/utils/CustomInterface";
 
 export default function Home() {
@@ -74,7 +73,7 @@ export default function Home() {
       {/* Seção de Notícias Recentes */}
       <NewsSection recentNews={posts} />
       <Partners />
-      <SolutionsSection />
+      {/*<SolutionsSection />*/}
       <CAT />
       <Footer />
     </div>

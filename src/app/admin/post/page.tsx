@@ -3,6 +3,7 @@ import AdminLayout from "@/components/AdminLayout";
 import { PostWithDeteils } from "@/utils/CustomInterface";
 import { Search, Plus, Edit, Trash2, Eye, Clock } from "lucide-react"; // Importamos novos ícones de ação
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 // MOCK DATA para simular o resultado da API e auxiliar no desenvolvimento
@@ -14,6 +15,7 @@ const AdminPost: React.FC = () => {
     const [noticias, setNoticias] = useState<PostWithDeteils[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [searchString, setSearchString] = useState("");
+    const router = useRouter();
 
     // Hook para carregar/filtrar dados
     useEffect(() => {
@@ -50,7 +52,7 @@ const AdminPost: React.FC = () => {
         };
 
         // Simulação do fetch, descomente para usar o fetch real:
-        getNoticias(); 
+        getNoticias();
 
         // Simulação de filtro local para o exemplo:
         const filtered = noticias.filter(post =>
@@ -59,7 +61,7 @@ const AdminPost: React.FC = () => {
         );
         setNoticias(filtered);
 
-    }, [searchString]); // Dispara o efeito sempre que a string de pesquisa mudar
+    }, [searchString, noticias]); // Dispara o efeito sempre que a string de pesquisa mudar
 
     function onChange(e: React.ChangeEvent<HTMLInputElement>) {
         setSearchString(e.target.value);
@@ -105,34 +107,53 @@ const AdminPost: React.FC = () => {
                 <tbody>
                     {noticias.length > 0 ? (
                         noticias.map((item) => (
-                            <tr key={item.id} className="bg-gray-800 border-b border-gray-700 hover:bg-gray-700 transition-colors">
+                            <tr key={item.id} className="bg-gray-800 border-b border-gray-700 hover:bg-gray-700 transition-colors" onClick={() => router.push(`/noticia/${item.slug}`)}>
+                                {/* Coluna 1: Título */}
                                 <th scope="row" className="px-6 py-2 font-medium text-white max-w-sm truncate">
                                     {item.titulo}
                                 </th>
+
+                                {/* Coluna 2: Categoria */}
                                 <td className="px-6 py-2 text-gray-300">
                                     {item.categoria.nome}
                                 </td>
+
+                                {/* Coluna 3: Autor */}
                                 <td className="px-6 py-2">
                                     {item.autor.nome}
                                 </td>
+
+                                {/* Coluna 4: Status */}
                                 <td className="px-6 py-2">
                                     <StatusBadge status={item.status} />
                                 </td>
-                                <td className="px-6 py-2 flex items-center">
-                                    <Clock size={14} className="mr-1 text-gray-500" />
-                                    {item.publicado_em?.toLocaleDateString('pt-MZ') }
+
+                                {/* COLUNA CORRIGIDA 5: Data (Removido o 'flex' da célula, aplicado apenas ao conteúdo) */}
+                                <td className="px-6 py-2 whitespace-nowrap text-gray-400">
+                                    <div className="flex items-center"> {/* O flex deve estar no conteúdo, não na <td> */}
+                                        <Clock size={14} className="mr-1 text-gray-500 flex-shrink-0" />
+                                        {
+                                            item.publicado_em
+                                                ? new Date(item.publicado_em).toLocaleDateString('pt-MZ')
+                                                : 'Data Indisponível'
+                                        }
+                                    </div>
                                 </td>
-                                <td className="px-6 py-2 text-center space-x-2 flex">
-                                    {/* Botões de Ação */}
-                                    <Link href={`/admin/post/edit/${item.id}`} className="p-1.5 rounded-full text-blue-400 hover:bg-gray-600 transition-colors" title="Editar">
-                                        <Edit size={18} />
-                                    </Link>
-                                    <Link href={`/noticia/${item.slug}`} target="_blank" className="p-1.5 rounded-full text-green-400 hover:bg-gray-600 transition-colors" title="Ver Publicamente">
-                                        <Eye size={18} />
-                                    </Link>
-                                    <button onClick={() => handleDelete(item.id)} className="p-1.5 rounded-full text-red-400 hover:bg-gray-600 transition-colors" title="Excluir">
-                                        <Trash2 size={18} />
-                                    </button>
+
+                                {/* COLUNA CORRIGIDA 6: Ações (Removido o 'text-center' da <td>, aplicado ao conteúdo) */}
+                                <td className="px-6 py-2">
+                                    <div className="flex justify-end items-center gap-1"> {/* Adicionado justify-end e gap */}
+                                        {/* Botões de Ação */}
+                                        <Link href={`/admin/post/edit/${item.id}`} className="p-1.5 rounded-full text-blue-400 hover:bg-gray-600 transition-colors" title="Editar">
+                                            <Edit size={18} />
+                                        </Link>
+                                        <Link href={`/noticia/${item.slug}`} target="_blank" className="p-1.5 rounded-full text-green-400 hover:bg-gray-600 transition-colors" title="Ver Publicamente">
+                                            <Eye size={18} />
+                                        </Link>
+                                        <button onClick={() => handleDelete(item.id)} className="p-1.5 rounded-full text-red-400 hover:bg-gray-600 transition-colors" title="Excluir">
+                                            <Trash2 size={18} />
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         ))

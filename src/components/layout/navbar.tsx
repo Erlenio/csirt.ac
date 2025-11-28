@@ -17,10 +17,6 @@ export const Header: React.FC = () => {
             url: "/sobre"
         },
         {
-            title: "Sobre Nós",
-            url: "/sobre"
-        },
-        {
             title: "Noticias",
             url: "/noticia"
         },
@@ -59,14 +55,7 @@ export const Header: React.FC = () => {
         }
     }
 
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-                setSearchOpen(false);
-            }
-        }
-        document.addEventListener('mousedown', handleClickOutside);
-        
+    useEffect(() => {        
 
         const getMe = async () => {
             try {
@@ -92,9 +81,9 @@ export const Header: React.FC = () => {
                     duration={1000}
                     fraction={0.5}
                 >
-                    <div className="text-3xl font-bold text-green-500 hover:text-green-400 transition-colors duration-300">
+                    <Link href="/" className="text-3xl font-bold text-green-500 hover:text-green-400 transition-colors duration-300">
                         CSIRT.AC
-                    </div>
+                    </Link>
                 </Fade>
 
                 <div className="flex items-center gap-4">
@@ -119,11 +108,11 @@ export const Header: React.FC = () => {
                         />
                     </div>}
 
-                    <div className="shadow-md border border-foreground/20 rounded-lg p-2 w-fit text-primary" onClick={() => setSearchOpen(!searchOpen)} ref={menuRef}>
+                    <div className="shadow-md border border-foreground/20 rounded-lg p-2 w-fit text-primary" onClick={() => setSearchOpen(!searchOpen)}>
                         <Search />
                     </div>
 
-                    <div className="block lg:hidden shadow-md border border-foreground/20 rounded-lg p-2 w-fit text-primary" onClick={toogleMenu}>
+                    <div className="block lg:hidden shadow-md border border-foreground/20 rounded-lg p-2 w-fit text-primary" onClick={toogleMenu} ref={menuRef}>
                         <Menu />
                     </div>
                 </div>
